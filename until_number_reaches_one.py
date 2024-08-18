@@ -36,7 +36,7 @@ class UntilNumberReachesOne:
         while True:
             if remain_n <= self.k:
                 if remain_n == self.k:
-                    return cnt +1
+                    return cnt + 1
                 elif remain_n == 1:
                     return cnt
                 else:
@@ -48,8 +48,20 @@ class UntilNumberReachesOne:
                 remain_n = remain_n / self.k
             cnt += 1
 
-        # return cnt + 1
+    def calculation2(self):
+        cnt = 0
+        cal_n = self.n
 
+        while True:
+            remain_n = (cal_n // self.k) * self.k
+            cnt += cal_n - remain_n
+            cal_n = remain_n
+
+            if cal_n < self.k:
+                return cnt + cal_n - 1
+
+            cnt += 1
+            cal_n //= self.k
 
 def test():
     test1 = UntilNumberReachesOne(17, 4)
@@ -75,6 +87,30 @@ def test():
     test2.change_condition(24, 3)
     print('check test2 changed values: ', test2.check_values())
     assert (test2.calculation() == 5)
+
+    test2_1 = UntilNumberReachesOne(17, 4)
+    print('check test2-1 values: ', test2_1.check_values())
+    assert (test2_1.calculation2() == 3)
+
+    test2_1.change_condition(25, 5)
+    print('check test2-1 changed values: ', test2_1.check_values())
+    assert (test2_1.calculation2() == 2)
+
+    test2_2 = UntilNumberReachesOne(25, 5)
+    print('check test2-2 values: ', test2_2.check_values())
+    assert (test2_2.calculation2() == 2)
+
+    test2_2.change_condition(25, 3)
+    print('check test2-2 changed values: ', test2_2.check_values())
+    assert (test2_2.calculation2() == 6)
+
+    test2_2.change_condition(100, 3)
+    print('check test2-2 changed values: ', test2_2.check_values())
+    assert (test2_2.calculation2() == 7)
+
+    test2_2.change_condition(24, 3)
+    print('check test2-2 changed values: ', test2_2.check_values())
+    assert (test2_2.calculation2() == 5)
 
 
 
