@@ -39,10 +39,10 @@ class UntilNumberReachesOne:
                     finish = False
                 break
 
-            quotient = remain_n // self.k
-            remainder = remain_n % self.k
-
-            remain_n = quotient + remainder
+            if remain_n % self.k != 0:
+                remain_n -= 1
+            else:
+                remain_n = remain_n / self.k
             cnt += 1
 
         if finish:
@@ -60,9 +60,9 @@ def test():
     test2 = UntilNumberReachesOne(25, 5)
     print('check test2 values: ', test2.check_values())
     assert (test2.calculation() == 2)
-    test2.change_condition(10000, 3)
+    test2.change_condition(25, 3)
     print('check test2 changed values: ', test2.check_values())
-    assert(test2.calculation() == 9)
+    assert(test2.calculation() == 6)
 
 
 
