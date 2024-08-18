@@ -30,39 +30,51 @@ class UntilNumberReachesOne:
 
     def calculation(self):
         cnt = 0
-        finish = True
+        # finish = True
         remain_n = self.n
 
         while True:
             if remain_n <= self.k:
-                if remain_n == 1:
-                    finish = False
+                if remain_n == self.k:
+                    return cnt +1
+                elif remain_n == 1:
+                    return cnt
+                else:
+                    return cnt + remain_n -1
                 break
-
             if remain_n % self.k != 0:
                 remain_n -= 1
             else:
                 remain_n = remain_n / self.k
             cnt += 1
 
-        if finish:
-            return cnt +1
-        else:
-            return cnt + remain_n
+        # return cnt + 1
+
 
 def test():
     test1 = UntilNumberReachesOne(17, 4)
     print('check test1 values: ', test1.check_values())
     assert(test1.calculation() == 3)
+
     test1.change_condition(25, 5)
     print('check test1 changed values: ', test1.check_values())
     assert (test1.calculation() == 2)
+
     test2 = UntilNumberReachesOne(25, 5)
     print('check test2 values: ', test2.check_values())
     assert (test2.calculation() == 2)
+
     test2.change_condition(25, 3)
     print('check test2 changed values: ', test2.check_values())
     assert(test2.calculation() == 6)
+
+    test2.change_condition(100, 3)
+    print('check test2 changed values: ', test2.check_values())
+    assert (test2.calculation() == 7)
+
+    test2.change_condition(24, 3)
+    print('check test2 changed values: ', test2.check_values())
+    assert (test2.calculation() == 5)
 
 
 
