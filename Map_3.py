@@ -49,8 +49,7 @@ class MoveMap():
         position_history = [[0] * self.map_col for _ in range(self.map_row)]
         self.map_2d[position[0]][position[1]] = 1
 
-        dx = [-1, 0, 1, 0]
-        dy = [0, 1, 0, -1]
+        dxy = [[-1, 0], [0, 1], [1, 0], [0, -1]]
 
         def turn_left(direction):
             direction -= 1
@@ -63,8 +62,10 @@ class MoveMap():
 
         while True:
             direction = turn_left(direction)
-            nx = position[0] + dx[direction]
-            ny = position[1] + dy[direction]
+            nx, ny = dxy[direction]
+
+            nx = position[0] + dxy[direction][0]
+            ny = position[1] + dxy[direction][1]
 
             if position_history[nx][ny] ==  0 and self.map_2d[nx][ny] == 0:
                 position_history[nx][ny] = 1
@@ -76,8 +77,8 @@ class MoveMap():
                 turn_time += 1
 
             if turn_time == 4:
-                nx = position[0] - dx[direction]
-                ny = position[1] - dy[direction]
+                nx = position[0] - dxy[direction][0]
+                ny = position[1] - dxy[direction][1]
 
                 if self.map_2d[nx][ny] == 0:
                     position = [nx, ny]
