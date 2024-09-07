@@ -3,6 +3,7 @@ Graph의 방식
 
 1. 인접 행렬 방식(위치와 거리)
 2. 인접 리스트 방식(위치와 거리, 위치만)
+3. 딕셔너리
 '''
 
 
@@ -42,6 +43,14 @@ graph_list_3[0].append(4)
 graph_list_3[2].append(0)
 graph_list_3[4].append(0)
 
+graph_dictionary = {
+    0: [2, 4],
+    1: [],
+    2: [0],
+    3: [],
+    4: [0]
+}
+
 
 
 print(graph_array)
@@ -51,3 +60,5 @@ print()
 print(graph_list_2)
 print()
 print(graph_list_3)
+print()
+print(graph_dictionary)
